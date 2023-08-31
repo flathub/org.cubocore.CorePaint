@@ -8,7 +8,8 @@ finish-args:
   - --socket=fallback-x11
   - --socket=wayland
   - --device=dri
-  - --filesystem=xdg-config
+  - --filesystem=xdg-pictures
+  - --filesystem=xdg-config:create
   - --talk-name=org.freedesktop.Notifications
 cleanup:
   - /include
