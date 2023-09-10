@@ -8,8 +8,8 @@ finish-args:
   - --socket=fallback-x11
   - --socket=wayland
   - --device=dri
-  - --filesystem=xdg-pictures
-  - --filesystem=xdg-config:create
+  - --filesystem=xdg-pictures # Collecting pictures and drawings from pictures folder
+  - --filesystem=xdg-config:create # flatpak linter causes error on xdg-config
   - --talk-name=org.freedesktop.Notifications
 cleanup:
   - /include
@@ -23,9 +23,6 @@ cleanup:
 modules:
   - name: libcprime
     buildsystem: cmake-ninja
-    config-opts:
-      - -DCMAKE_INSTALL_PREFIX=/app
-      - -DCMAKE_BUILD_TYPE=Release
     sources:
       - type: git
         url: https://gitlab.com/cubocore/libcprime.git
@@ -34,10 +31,6 @@ modules:
     post-install:
       - install -Dp -m 644 org.cubocore.CorePaint.appdata.xml /app/share/appdata/org.cubocore.CorePaint.appdata.xml
     buildsystem: cmake-ninja
-    config-opts:
-      - -DCMAKE_INSTALL_PREFIX=/app
-      - -DCMAKE_BUILD_TYPE=Release
-      - -DCMAKE_LIBRARY_PATH=/app/lib
     sources:
       - type: file
         path: org.cubocore.CorePaint.appdata.xml
