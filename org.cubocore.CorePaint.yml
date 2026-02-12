@@ -1,8 +1,11 @@
 app-id: org.cubocore.CorePaint
 runtime: org.kde.Platform
-runtime-version: '5.15-25.08'
+runtime-version: '6.10'
 sdk: org.kde.Sdk
 command: corepaint
+rename-desktop-file: cc.cubocore.CorePaint.desktop
+rename-icon: cc.cubocore.CorePaint
+rename-appdata-file: cc.cubocore.CorePaint.metainfo.xml
 finish-args:
   - --share=ipc
   - --socket=fallback-x11
@@ -22,18 +25,20 @@ cleanup:
 modules:
   - name: libcprime
     buildsystem: cmake-ninja
-    config-opts: ["-DCMAKE_POLICY_VERSION_MINIMUM=3.5"]
+    config-opts: [
+        "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+    ]
     sources:
       - type: git
         url: https://gitlab.com/cubocore/libcprime.git
-        tag: v4.5.0
+        commit: 17d4c94f3be2c7f67dc757cf852f0144945c2c69
+        tag: v5.0.1
   - name: corepaint
-    post-install:
-      - install -Dp -m 644 org.cubocore.CorePaint.appdata.xml /app/share/appdata/org.cubocore.CorePaint.appdata.xml
     buildsystem: cmake-ninja
     sources:
-      - type: file
-        path: org.cubocore.CorePaint.appdata.xml
       - type: git
         url: https://gitlab.com/cubocore/coreapps/corepaint.git
-        tag: v4.5.0
+        commit: dee3fba2ed1ad20a11a6217bf4d1070a0d9e0784
+        tag: v5.0.1
+      - type: patch
+        path: fix-appID-name.patch

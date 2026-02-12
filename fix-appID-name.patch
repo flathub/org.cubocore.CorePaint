@@ -1,0 +1,29 @@
+--- a/cc.cubocore.CorePaint.desktop
++++ b/cc.cubocore.CorePaint.desktop
+@@ -5,4 +5,4 @@
+ Exec=corepaint %F
+-Icon=cc.cubocore.CorePaint
++Icon=org.cubocore.CorePaint
+ Type=Application
+ Categories=Qt;Graphics;X-CSuite;
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -31,3 +31,3 @@
+ #include "corepaint.h"
+ 
+-const QString appID = APP_ID;
++const QString appID = QStringLiteral("org.cubocore.CorePaint");
+ 
+--- a/cc.cubocore.CorePaint.metainfo.xml
++++ b/cc.cubocore.CorePaint.metainfo.xml
+@@ -5,3 +5,3 @@
+ <component type="desktop-application">
+-    <id>cc.cubocore.CorePaint</id>
++    <id>org.cubocore.CorePaint</id>
+ 
+@@ -14,3 +14,3 @@
+     <developer_name>CuboCore Group</developer_name>
+ 
+-    <launchable type="desktop-id">cc.cubocore.CorePaint.desktop</launchable>
++    <launchable type="desktop-id">org.cubocore.CorePaint.desktop</launchable>
+
